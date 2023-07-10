@@ -335,8 +335,24 @@ DELIMITER ;
 <---------------------------------->
 
 
+#VIEW laporan_ppbarang
+
+DELIMITER $$
+CREATE PROCEDURE get_view_laporan_ppbarang()
+BEGIN
+SELECT * FROM laporan_ppbarang;
+END$$
+DELIMITER ;
 
 
+#VIEW laporan_totsiventaris
+
+DELIMITER $$ 	 
+CREATE PROCEDURE get_view_laporan_totsiventaris()
+BEGIN
+SELECT * FROM laporan_totsiventaris;
+END$$
+DELIMITER ;
 
 
 ------------- TRIGGER --------------
@@ -455,6 +471,8 @@ CREATE VIEW laporan_ppbarang  AS
 	stok as Stok Akhir,
     FROM
         barang natural join d_beli natural join d_jual;
+
+
 
 
 # view table for laporan total nilai iventaris untuk setiap barang

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2023 at 10:53 AM
+-- Generation Time: Jul 10, 2023 at 03:36 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -75,6 +75,14 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_users` ()   BEGIN
 SELECT * FROM users WHERE status = 1; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_laporan_ppbarang` ()   BEGIN
+SELECT * FROM laporan_ppbarang;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_laporan_totsiventaris` ()   BEGIN
+SELECT * FROM laporan_totsiventaris;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insert_barang` (`a` CHAR(10), `b` VARCHAR(15), `c` VARCHAR(15), `d` INT, `e` INT, `f` INT, `g` INT)   BEGIN
@@ -168,7 +176,13 @@ INSERT INTO `barang` (`kd_brg`, `nm_brg`, `satuan`, `hrg_beli`, `hrg_jual`, `sto
 ('B0017', 'Penghapus', 'PCS', 5000, 8000, 10, 10),
 ('B0018', 'Pensil 2B', 'PCS', 3000, 4000, 10, 10),
 ('B0019', 'Pensil 3B', 'PCS', 4000, 5000, 15, 15),
-('B0020', 'Pensil 4B', 'PCS', 8000, 11000, 15, 15);
+('B0020', 'Pensil 4B', 'PCS', 8000, 11000, 15, 15),
+('B0021', 'Pensil 5B', 'PCS', 10000, 12000, 10, 10),
+('B0022', 'Pensil 6B', 'PCS', 15000, 20000, 10, 10),
+('B0023', 'Pensil 7B', 'PCS', 18000, 25000, 10, 10),
+('B0024', 'Pensil 8B', 'PCS', 20000, 30000, 10, 10),
+('B0025', 'Pensil 9B', 'PCS', 30000, 60000, 5, 5),
+('B0026', 'Sabuk Kulit', 'PCS', 25000, 30000, 5, 5);
 
 -- --------------------------------------------------------
 

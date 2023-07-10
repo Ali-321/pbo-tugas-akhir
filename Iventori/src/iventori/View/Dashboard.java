@@ -4,6 +4,8 @@
  */
 package iventori.View;
 
+import iventori.View.Laporan.PpBarang;
+import iventori.View.Laporan.TotsIventaris;
 import iventori.View.Master.Barang;
 import iventori.model.Sesi;
 import javax.swing.JOptionPane;
@@ -45,7 +47,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        mPpbarang = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,15 +99,20 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu3.setText("Laporan");
 
-        jMenuItem6.setText("Barang Masuk Keluar");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        mPpbarang.setText("Barang Masuk Keluar");
+        mPpbarang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                mPpbarangActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu3.add(mPpbarang);
 
         jMenuItem3.setText("Total Nilai Iventaris");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
@@ -147,9 +154,12 @@ public class Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void mPpbarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mPpbarangActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+        new PpBarang().setVisible(true);
+        this.dispose();
+        
+    }//GEN-LAST:event_mPpbarangActionPerformed
 
     private void mBarangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mBarangActionPerformed
         // TODO add your handling code here:
@@ -164,6 +174,12 @@ public class Dashboard extends javax.swing.JFrame {
         new Login().setVisible(true);
        
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:\
+       new TotsIventaris().setVisible(true);
+       this.dispose();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,9 +226,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblName;
     private javax.swing.JMenuItem mBarang;
+    private javax.swing.JMenuItem mPpbarang;
     // End of variables declaration//GEN-END:variables
 }
