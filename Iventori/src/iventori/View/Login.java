@@ -52,6 +52,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel3.setText("Username");
 
+        btnLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLogin.setText("login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +98,7 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addGap(36, 36, 36)
                 .addComponent(btnLogin)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();

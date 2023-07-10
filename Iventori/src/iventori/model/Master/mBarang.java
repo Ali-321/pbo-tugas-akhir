@@ -35,7 +35,7 @@ public class mBarang {
                  
 
             }catch(Exception e){
-                e.printStackTrace();
+               JOptionPane.showMessageDialog(null,e);
             }
     
     
@@ -59,12 +59,58 @@ public class mBarang {
                  cstmt.executeUpdate();
 
             }catch(Exception e){
-                e.printStackTrace();
+          
                 JOptionPane.showMessageDialog(null,e);
             }
     
     
     } 
      
+    public void delete(String kode){
+        
+            try{
+             
+                 String call = "{CALL delete_barang(?)}"; 
+                 CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
+           
+                 cstmt.setString(1, kode);
+                 cstmt.executeUpdate();
+            }catch(Exception e){
+          
+                JOptionPane.showMessageDialog(null,e);
+            }
+            
+    }
+    
+    public void update(String kode,String nama,String satuan,int hrgBeli,int hrgJual ,int stok,int stokMin){
+        
+            try{
+             
+                 String call = "{CALL update_barang(?,?,?,?,?,?,?)}"; 
+                 CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
+                 
+                 cstmt.setString(1, kode);
+                 cstmt.setString(2, nama);
+                 cstmt.setString(3, satuan);
+                 cstmt.setInt(4, hrgBeli);
+                 cstmt.setInt(5, hrgJual);
+                 cstmt.setInt(6, stok);
+                 cstmt.setInt(7, stokMin);
+                 cstmt.setString(1, kode);
+                 cstmt.executeUpdate();
+                 
+            }catch(Exception e){
+          
+                JOptionPane.showMessageDialog(null,e);
+            }
+            
+    }
+    
+    
+    
+    
      
 }
+
+
+
