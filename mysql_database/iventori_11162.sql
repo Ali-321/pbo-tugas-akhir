@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 07, 2023 at 09:49 PM
+-- Generation Time: Jul 10, 2023 at 10:53 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -67,6 +67,10 @@ END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_tjual` ()   BEGIN
 SELECT * FROM t_jual;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user` (`a` VARCHAR(50), `b` VARCHAR(20))   BEGIN
+SELECT * FROM users WHERE status = 1 AND name = a AND pswd = b; 
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_users` ()   BEGIN
@@ -148,8 +152,23 @@ INSERT INTO `barang` (`kd_brg`, `nm_brg`, `satuan`, `hrg_beli`, `hrg_jual`, `sto
 ('B0001', 'Pulpen', 'PCS', 3000, 4500, 35, 5),
 ('B0002', 'Pensil Mekanik', 'PCS', 5000, 6500, 35, 5),
 ('B0003', 'Krayon', 'PCS', 8000, 9500, 30, 5),
-('B0004', 'Pensil', 'PCS', 2000, 2500, 15, 5),
-('B0005', 'tip-x', 'PCS', 2000, 2500, 7, 2);
+('B0004', 'Pensil 1B', 'PCS', 2000, 2500, 15, 5),
+('B0005', 'Tip-x', 'PCS', 2000, 2500, 2, 7),
+('B0006', 'Buku Tulis', 'PCS', 3000, 4000, 10, 10),
+('B0007', 'Buku Gambar', 'PCS', 3000, 4000, 15, 15),
+('B0008', 'Penggaris', 'PCS', 3000, 4000, 5, 5),
+('B0009', 'Bujur Sangkar', 'PCS', 3500, 5000, 10, 10),
+('B0010', 'Spidol Permanen', 'PCS', 10000, 12000, 10, 10),
+('B0011', 'Kapor ', 'PCS', 15000, 16000, 5, 5),
+('B0012', 'Kapor barus', 'PCS', 20000, 21000, 5, 5),
+('B0013', 'Cutter', 'PCS', 15000, 16000, 5, 5),
+('B0014', 'Sillet', 'PCS', 16000, 18000, 10, 10),
+('B0015', 'Papan Tulis(sp)', 'PCS', 30000, 35000, 8, 8),
+('B0016', 'Papan Tulis(kp)', 'PCS', 35000, 40000, 8, 8),
+('B0017', 'Penghapus', 'PCS', 5000, 8000, 10, 10),
+('B0018', 'Pensil 2B', 'PCS', 3000, 4000, 10, 10),
+('B0019', 'Pensil 3B', 'PCS', 4000, 5000, 15, 15),
+('B0020', 'Pensil 4B', 'PCS', 8000, 11000, 15, 15);
 
 -- --------------------------------------------------------
 
