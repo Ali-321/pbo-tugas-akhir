@@ -11,11 +11,17 @@ package iventori.model;
 public class Sesi {
    public static String username;
    public static String level;
+   public static boolean access;
     
     
     public Sesi(String user,String level){
          this.username = user;
          this.level = level;
+         if(level.equals("administrator")){
+             this.access = true;
+         }else{
+             this.access = false;
+         }
     }
     
     public Sesi(){

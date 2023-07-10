@@ -29,7 +29,7 @@ public class mBarang {
                  DefaultTableModel model = (DefaultTableModel) tblBrg.getModel();
                  model.setRowCount(0);
                  while(rs.next()){
-                     model.addRow(new String[]{rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getString(6)});
+                     model.addRow(new String[]{rs.getString(2),rs.getString(1),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(7),rs.getString(6)});
                  }
                  
                  

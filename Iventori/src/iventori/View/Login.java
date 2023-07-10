@@ -4,6 +4,7 @@
  */
 package iventori.View;
 
+import iventori.model.Sesi;
 import iventori.model.mLogin;
 import javax.swing.JOptionPane;
 
@@ -117,7 +118,7 @@ public class Login extends javax.swing.JFrame {
         if(oi){
             this.setVisible(false);
             JOptionPane.showMessageDialog(null,"Login berhasil !!!");
-            new Dashboard().setVisible(true);
+            new Dashboard().setVisible(oi);
         }else{
           JOptionPane.showMessageDialog(null,"Gagal Login !!!");
            
