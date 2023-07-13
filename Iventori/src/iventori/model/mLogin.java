@@ -13,8 +13,9 @@ import java.sql.ResultSet;
  */
 public class mLogin {
  
-static String user;
-static String level;
+static private String user;
+static private String level;
+static private int id;
    
    
    public static boolean login(String username,String pswd){
@@ -33,7 +34,8 @@ static String level;
                   while(rs.next()){
                       user = rs.getString("name");
                       level = rs.getString("level");
-                      new Sesi(user,level);
+                      id = rs.getInt("id");
+                      new Sesi(user,level,id);
                       i++;  
                   }
                   

@@ -23,7 +23,7 @@ public class mUsers {
     
         
             try{
-              String call = "{CALL get_users()}"; 
+              String call = "{CALL get_users2()}"; 
                  CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
                  ResultSet rs = cstmt.executeQuery();     
                  
@@ -67,5 +67,46 @@ public class mUsers {
             }
     
     
-    } 
+    }
+     
+     public void delete(int id){
+        
+            try{
+             
+                 String call = "{CALL delete_users(?)}"; 
+                 CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
+           
+                 cstmt.setInt(1, id);
+                 cstmt.executeUpdate();
+            }catch(Exception e){
+          
+                JOptionPane.showMessageDialog(null,e);
+            }
+            
+    }
+     
+      
+    public void update(int id,String pswd,String name,String level,boolean status){
+        
+            try{
+             
+                 String call = "{CALL update_users(?,?,?,?,?)}"; 
+                 CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
+                 
+                 cstmt.setInt(1, id);
+                 cstmt.setString(2, pswd);
+                 cstmt.setString(3, name);
+                 cstmt.setString(4, level);
+                 cstmt.setBoolean(5, status);
+                 cstmt.executeUpdate();
+                 
+            }catch(Exception e){
+          
+                JOptionPane.showMessageDialog(null,e);
+            }
+            
+    }
+    
+    
+    
 }

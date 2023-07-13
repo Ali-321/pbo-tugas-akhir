@@ -332,8 +332,8 @@ public class Barang extends javax.swing.JFrame {
             String satuan = model.getValueAt(tblBrg.getSelectedRow(),2).toString();
             String hrgBeli = model.getValueAt(tblBrg.getSelectedRow(),3).toString();
             String hrgJual = model.getValueAt(tblBrg.getSelectedRow(),4).toString();
-            String stok = model.getValueAt(tblBrg.getSelectedRow(),5).toString();
-            String stokMin = model.getValueAt(tblBrg.getSelectedRow(),6).toString();
+            String stok = model.getValueAt(tblBrg.getSelectedRow(),6).toString();
+            String stokMin = model.getValueAt(tblBrg.getSelectedRow(),5).toString();
 
             // set To text Field
 

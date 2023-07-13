@@ -160,6 +160,13 @@ SELECT * FROM users WHERE status = 1;
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE PROCEDURE get_users2() 
+BEGIN
+SELECT * FROM users; 
+END$$
+DELIMITER ;
+
 
 DELIMITER $$
 CREATE PROCEDURE get_user(a varchar(50),b varchar (20)) 
@@ -249,6 +256,41 @@ SELECT * FROM d_beli;
 END$$
 DELIMITER ;
 <---------------------------------->
+
+## Procedure Table relasi t_beli dan d_beli
+
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_brgm()
+BEGIN
+SELECT id ,tgl_beli,id_user,d_beli.kd_beli,kd_brg,jml_beli from t_beli INNER JOIN d_beli ON t_beli.kd_beli = d_beli.kd_beli;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_brgm()
+BEGIN
+SELECT t_beli.kd_beli,tgl_beli,users.name as User,COUNT(*) as item ,SUM((hrg_beli * jml_beli)) as total FROM t_beli LEFT JOIN d_beli ON t_beli.kd_beli = d_beli.kd_beli LEFT JOIN barang ON barang.kd_brg = d_beli.kd_brg LEFT JOIN users ON users.id = t_beli.id_user GROUP BY kd_beli;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_bm()
+BEGIN
+SELECT d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg;
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_bm2(a char(10))
+BEGIN
+SELECT d_beli.id,d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg WHERE d_beli.kd_beli = a;
+END$$
+DELIMITER ;
 
 
 
@@ -355,6 +397,8 @@ END$$
 DELIMITER ;
 
 
+
+
 ------------- TRIGGER --------------
 
 
@@ -444,6 +488,7 @@ UPDATE barang SET stok = stok - new.jml_jual WHERE barang.kd_brg = new.kd_brg &&
 <------------------------------------->
 
 
+
 # TRIGGER ON TABLE t_jual 
 
 <----() stok barang akan otomatis berkuran sesuai jumlah yang didelete jika terjadi pembatalan  beli barang ()---->
@@ -515,3 +560,5 @@ stok  = stok - (old.jml_jual-new.jml_jual) -> trigger beli
 call get_tjual();
 call insert_tjual("KDBJ0001","2022-1-22",3);
 call get_tjual();
+
+KDB0000100

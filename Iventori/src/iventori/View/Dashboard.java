@@ -8,6 +8,7 @@ import iventori.View.Laporan.PpBarang;
 import iventori.View.Laporan.TotsIventaris;
 import iventori.View.Master.Barang;
 import iventori.View.Master.Users;
+import iventori.View.Transaksi.BarangMasuk;
 import iventori.model.Sesi;
 import javax.swing.JOptionPane;
 
@@ -59,8 +60,8 @@ public class Dashboard extends javax.swing.JFrame {
         menuBarang = new javax.swing.JMenuItem();
         menuUsers = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        menuBrgMasuk = new javax.swing.JMenuItem();
+        menuBrgKeluar = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuPpBarang = new javax.swing.JMenuItem();
         menuTotsInv = new javax.swing.JMenuItem();
@@ -104,11 +105,16 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu2.setText("Transaksi");
 
-        jMenuItem4.setText("Barang Masuk");
-        jMenu2.add(jMenuItem4);
+        menuBrgMasuk.setText("Barang Masuk");
+        menuBrgMasuk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBrgMasukActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuBrgMasuk);
 
-        jMenuItem5.setText("Barang Keluar");
-        jMenu2.add(jMenuItem5);
+        menuBrgKeluar.setText("Barang Keluar");
+        jMenu2.add(menuBrgKeluar);
 
         jMenuBar1.add(jMenu2);
 
@@ -198,6 +204,13 @@ public class Dashboard extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_menuTotsInvActionPerformed
 
+    private void menuBrgMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBrgMasukActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new BarangMasuk().setVisible(true);
+        
+    }//GEN-LAST:event_menuBrgMasukActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -239,11 +252,11 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JLabel lblLevel;
     private javax.swing.JLabel lblName;
     private javax.swing.JMenuItem menuBarang;
+    private javax.swing.JMenuItem menuBrgKeluar;
+    private javax.swing.JMenuItem menuBrgMasuk;
     private javax.swing.JMenuItem menuPpBarang;
     private javax.swing.JMenuItem menuTotsInv;
     private javax.swing.JMenuItem menuUsers;
