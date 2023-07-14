@@ -2,6 +2,10 @@
 IDE   : NetBeans
 
 
+## Link Demo Program 
+mohon maaf pak telat 😢 .....
+https://youtu.be/KcFp-gxrLXs
+
 ## keterangan: 
 - JasperImport hanya bisa dijalankan menggunak java JDK versi 8
 - import database pada mysql_database-> iventori_11162.sql
