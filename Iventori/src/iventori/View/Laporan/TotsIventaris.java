@@ -5,7 +5,15 @@
 package iventori.View.Laporan;
 
 import iventori.View.Dashboard;
+import iventori.model.Conn;
 import iventori.model.Laporan.mTotsIventaris;
+import java.sql.Connection;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -56,6 +64,11 @@ public class TotsIventaris extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setText("Cetak");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
         jButton2.setText("<< Back to Home");
@@ -103,6 +116,22 @@ public class TotsIventaris extends javax.swing.JFrame {
         new Dashboard().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+          try{
+             String reportPath = "src/iventori/model/Laporan/report/mTotsIventaris.jasper";
+             Connection conn = Conn.connect();
+            HashMap<String,Object> parameters = new HashMap<>();
+            JasperPrint print  = JasperFillManager.fillReport(reportPath,parameters,conn);
+            JasperViewer viewer = new JasperViewer(print,false);
+        
+            viewer.setVisible(true);
+            
+           }catch(JRException e){
+               JOptionPane.showMessageDialog(null,e);
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

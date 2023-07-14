@@ -6,6 +6,7 @@ package iventori.model.Laporan;
 
 import com.mysql.cj.jdbc.CallableStatement;
 import iventori.model.Conn;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import javax.swing.JOptionPane;
@@ -45,15 +46,19 @@ public class mPpBarang {
     }
     
       
-      public void cetakReport() throws JRException{
-            
+      public void cetakReport() {
+            try{
              String reportPath = "src/iventori/model/Laporan/report/Laporan_PpBarang.jasper";
-          
+             Connection conn = Conn.connect();
             HashMap<String,Object> parameters = new HashMap<>();
-            JasperPrint print  = JasperFillManager.fillReport(reportPath,parameters,Conn.connect());
+            JasperPrint print  = JasperFillManager.fillReport(reportPath,parameters,conn);
             JasperViewer viewer = new JasperViewer(print,false);
         
             viewer.setVisible(true);
+            
+           }catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+            }
             
     } 
 

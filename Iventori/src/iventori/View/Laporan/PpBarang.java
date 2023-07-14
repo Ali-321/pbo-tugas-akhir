@@ -5,8 +5,15 @@
 package iventori.View.Laporan;
 
 import iventori.View.Dashboard;
+import iventori.model.Conn;
 
 import iventori.model.Laporan.mPpBarang;
+import java.sql.Connection;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -109,7 +116,19 @@ public class PpBarang extends javax.swing.JFrame {
 
     private void btnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakActionPerformed
         // TODO add your handling code here:
-      mppb.cetakReport();
+          try{
+             String reportPath = "src/iventori/model/Laporan/report/Laporan_PpBarang.jasper";
+             Connection conn = Conn.connect();
+            HashMap<String,Object> parameters = new HashMap<>();
+            JasperPrint print  = JasperFillManager.fillReport(reportPath,parameters,conn);
+            JasperViewer viewer = new JasperViewer(print,false);
+        
+            viewer.setVisible(true);
+            
+           }catch(Exception e){
+               JOptionPane.showMessageDialog(null,e);
+            }
+            
     
     }//GEN-LAST:event_btnCetakActionPerformed
 

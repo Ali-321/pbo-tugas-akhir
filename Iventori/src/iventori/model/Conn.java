@@ -12,7 +12,7 @@ import java.util.Scanner;
  */
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 
 public class Conn {
  public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
