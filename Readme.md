@@ -6,6 +6,8 @@ IDE   : NetBeans
 go to folder: Iventori -> src -> iventori,
 lalu run file -> iventori.java
 
+- import database pada mysql_database-> iventori_11162.sql  
+
 ## Account untuk Login
 level admin:
 - Nama    : Admin
