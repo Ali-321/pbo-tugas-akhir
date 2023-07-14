@@ -2,8 +2,8 @@
 IDE   : NetBeans
 
 ## Cara Menjalankan Program
-go to : Iventori -> src -> iventori 
-run file : iventori.java
+go to folder: Iventori -> src -> iventori,
+lalu run file -> iventori.java
 
 ## Account untuk Login
 level admin:
