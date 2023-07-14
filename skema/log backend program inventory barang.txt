@@ -276,6 +276,16 @@ DELIMITER ;
 
 
 DELIMITER $$
+CREATE PROCEDURE get_transaksi_brgk()
+BEGIN
+SELECT t_jual.kd_jual,tgl_jual,users.name as User,COUNT(*) as item ,SUM((hrg_jual * jml_jual)) as total FROM t_jual LEFT JOIN d_jual ON t_jual.kd_jual = d_jual.kd_jual LEFT JOIN barang ON barang.kd_brg = d_jual.kd_brg LEFT JOIN users ON users.id = t_jual.id_user GROUP BY kd_jual;
+END$$
+DELIMITER ;
+
+
+
+
+DELIMITER $$
 CREATE PROCEDURE get_transaksi_bm()
 BEGIN
 SELECT d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg;
@@ -283,6 +293,29 @@ END$$
 DELIMITER ;
 
 
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_bk()
+BEGIN
+SELECT count(*) as totId from d_jual;
+END$$
+DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE get_end_iddj()
+BEGIN
+SELECT MAX(id) FROM d_jual;
+END$$
+DELIMITER ;
+
+
+
+DELIMITER $$
+CREATE PROCEDURE get_end_iddb()
+BEGIN
+SELECT MAX(id) FROM d_beli;
+END$$
+DELIMITER ;
 
 
 DELIMITER $$
@@ -291,6 +324,16 @@ BEGIN
 SELECT d_beli.id,d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg WHERE d_beli.kd_beli = a;
 END$$
 DELIMITER ;
+
+
+DELIMITER $$
+CREATE PROCEDURE get_transaksi_bk2(a char(10))
+BEGIN
+SELECT d_jual.id,d_jual.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_jual as harga,d_jual.jml_jual as jumlah,(d_jual.jml_jual * barang.hrg_jual ) as total FROM barang INNER JOIN d_jual ON barang.kd_brg = d_jual.kd_brg WHERE d_jual.kd_jual = a;
+END$$
+DELIMITER ;
+
+
 
 
 
@@ -503,19 +546,7 @@ DELETE FROM d_jual WHERE d_jual.kd_jual = old.kd_jual;
 ------------ View Table ------------------------
 
 # view table for laporan transaksi penerimaan barang dan pengeluaran
-CREATE VIEW laporan_ppbarang  AS
-    SELECT 
-        kd_brg as Kode Barang,
-        nm_brg as Nama Barang,
-	satuan as Satuan,
-	hrg_beli as Harga Beli,
-	hrg_jual as Harga Jual,
-	stok_min as Stok Awal,
-	jml_beli as Jml Beli,
-	jml_jual as Jml jual
-	stok as Stok Akhir,
-    FROM
-        barang natural join d_beli natural join d_jual;
+CREATE VIEW laporan_ppbarang  AS SELECT barang.kd_brg as Kode_Barang,nm_brg as Nama_Barang,satuan as Satuan,hrg_beli as Harga_Beli,hrg_jual as Harga_Jual,stok_min as Stok_Awal,SUM(jml_beli) as Jml_Beli,SUM(jml_jual) as Jml_jual,stok as Stok_Akhir FROM barang LEFT join d_jual on barang.kd_brg = d_jual.kd_brg LEFT join d_beli ON d_beli.kd_brg = barang.kd_brg GROUP BY barang.kd_brg;
 
 
 

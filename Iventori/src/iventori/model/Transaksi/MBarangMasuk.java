@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class MBarangMasuk {
 
-    static  int kdBeli = 1;    
+
     
      public void showTable(JTable tblBrg ){
     
@@ -52,7 +52,6 @@ public class MBarangMasuk {
           
     public void insertTbeli(String kode,String tgl,int idUser){
  
-            kdBeli++;
             try{
              
                  String call = "{CALL insert_tbeli(?,?,?)}"; 

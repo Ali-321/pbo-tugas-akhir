@@ -8,6 +8,7 @@ import iventori.View.Laporan.PpBarang;
 import iventori.View.Laporan.TotsIventaris;
 import iventori.View.Master.Barang;
 import iventori.View.Master.Users;
+import iventori.View.Transaksi.BarangKeluar;
 import iventori.View.Transaksi.BarangMasuk;
 import iventori.model.Sesi;
 import javax.swing.JOptionPane;
@@ -114,6 +115,11 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu2.add(menuBrgMasuk);
 
         menuBrgKeluar.setText("Barang Keluar");
+        menuBrgKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuBrgKeluarActionPerformed(evt);
+            }
+        });
         jMenu2.add(menuBrgKeluar);
 
         jMenuBar1.add(jMenu2);
@@ -210,6 +216,12 @@ public class Dashboard extends javax.swing.JFrame {
         new BarangMasuk().setVisible(true);
         
     }//GEN-LAST:event_menuBrgMasukActionPerformed
+
+    private void menuBrgKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBrgKeluarActionPerformed
+        // TODO add your handling code here:
+        new BarangKeluar().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_menuBrgKeluarActionPerformed
 
     /**
      * @param args the command line arguments

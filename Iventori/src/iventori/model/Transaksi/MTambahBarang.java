@@ -26,16 +26,15 @@ static int id;
     
         
             try{
-              String call = "{CALL get_transaksi_bm()}";
+              String call = "{CALL get_end_iddb()}";
                  CallableStatement cstmt = (CallableStatement)Conn.connect().prepareCall(call);
                  ResultSet rs = cstmt.executeQuery();    
    
-                 int i =0;
                  while(rs.next()){
 
-                     i++;
+                   id = rs.getInt("Max(id)");
                  }
-                 id = i++;
+                 
                  
 
             }catch(SQLException e){
