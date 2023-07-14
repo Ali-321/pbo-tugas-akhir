@@ -15,10 +15,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 
 public class Conn {
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://127.0.0.1/iventori_11162";
-    static final String USER ="root";
-    static final String PASS = "";
+ public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+ public static final String DB_URL = "jdbc:mysql://127.0.0.1/iventori_11162";
+ public static final String USER ="root";
+ public static final String PASS = "";
     
     static Connection conn;
     

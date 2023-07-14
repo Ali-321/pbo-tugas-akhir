@@ -7,9 +7,14 @@ package iventori.model.Laporan;
 import com.mysql.cj.jdbc.CallableStatement;
 import iventori.model.Conn;
 import java.sql.ResultSet;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -37,7 +42,20 @@ public class mPpBarang {
             }catch(Exception e){
                JOptionPane.showMessageDialog(null,e);
             }
-    
-    
     }
+    
+      
+      public void cetakReport() throws JRException{
+            
+             String reportPath = "src/iventori/model/Laporan/report/Laporan_PpBarang.jasper";
+          
+            HashMap<String,Object> parameters = new HashMap<>();
+            JasperPrint print  = JasperFillManager.fillReport(reportPath,parameters,Conn.connect());
+            JasperViewer viewer = new JasperViewer(print,false);
+        
+            viewer.setVisible(true);
+            
+    } 
+
 }
+
