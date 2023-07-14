@@ -15,12 +15,12 @@ lalu run file -> iventori.java
  
 ## Account untuk Login
 level admin:
-- Nama    : Admin
-- Password: Admin
+- Nama    : admin
+- Password: admin
 
 level users:
 - Nama    : User
-- Password: User
+- Password: 123
 
 
 
