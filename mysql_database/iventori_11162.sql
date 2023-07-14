@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 10, 2023 at 03:36 PM
+-- Generation Time: Jul 14, 2023 at 05:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -69,12 +69,28 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `get_tjual` ()   BEGIN
 SELECT * FROM t_jual;
 END$$
 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_transaksi_bm` ()   BEGIN
+SELECT d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_transaksi_bm2` (`a` CHAR(10))   BEGIN
+SELECT d_beli.id,d_beli.kd_brg,barang.nm_brg as nama_barang,barang.satuan,barang.hrg_beli as harga,d_beli.jml_beli as jumlah,(d_beli.jml_beli * barang.hrg_beli ) as total FROM barang INNER JOIN d_beli ON barang.kd_brg = d_beli.kd_brg WHERE d_beli.kd_beli = a;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_transaksi_brgm` ()   BEGIN
+SELECT t_beli.kd_beli,tgl_beli,users.name as User,COUNT(*) as item ,SUM((hrg_beli * jml_beli)) as total FROM t_beli LEFT JOIN d_beli ON t_beli.kd_beli = d_beli.kd_beli LEFT JOIN barang ON barang.kd_brg = d_beli.kd_brg LEFT JOIN users ON users.id = t_beli.id_user GROUP BY kd_beli;
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_user` (`a` VARCHAR(50), `b` VARCHAR(20))   BEGIN
 SELECT * FROM users WHERE status = 1 AND name = a AND pswd = b; 
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_users` ()   BEGIN
 SELECT * FROM users WHERE status = 1; 
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `get_users2` ()   BEGIN
+SELECT * FROM users;
 END$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `get_view_laporan_ppbarang` ()   BEGIN
@@ -157,18 +173,18 @@ CREATE TABLE `barang` (
 --
 
 INSERT INTO `barang` (`kd_brg`, `nm_brg`, `satuan`, `hrg_beli`, `hrg_jual`, `stok`, `stok_min`) VALUES
-('B0001', 'Pulpen', 'PCS', 3000, 4500, 35, 5),
-('B0002', 'Pensil Mekanik', 'PCS', 5000, 6500, 35, 5),
-('B0003', 'Krayon', 'PCS', 8000, 9500, 30, 5),
-('B0004', 'Pensil 1B', 'PCS', 2000, 2500, 15, 5),
-('B0005', 'Tip-x', 'PCS', 2000, 2500, 2, 7),
+('B0001', 'Pulpen', 'PCS', 3000, 4500, 30, 5),
+('B0002', 'Pensil Mekanik', 'PCS', 5000, 6500, 20, 5),
+('B0003', 'Krayon', 'PCS', 8000, 9500, 5, 5),
+('B0004', 'Pensil 1B', 'PCS', 2000, 2500, 5, 5),
+('B0005', 'Tip-x', 'PCS', 2000, 2500, 7, 7),
 ('B0006', 'Buku Tulis', 'PCS', 3000, 4000, 10, 10),
 ('B0007', 'Buku Gambar', 'PCS', 3000, 4000, 15, 15),
 ('B0008', 'Penggaris', 'PCS', 3000, 4000, 5, 5),
 ('B0009', 'Bujur Sangkar', 'PCS', 3500, 5000, 10, 10),
 ('B0010', 'Spidol Permanen', 'PCS', 10000, 12000, 10, 10),
 ('B0011', 'Kapor ', 'PCS', 15000, 16000, 5, 5),
-('B0012', 'Kapor barus', 'PCS', 20000, 21000, 5, 5),
+('B0012', 'Kapor barus', 'PCS', 20000, 21000, 15, 5),
 ('B0013', 'Cutter', 'PCS', 15000, 16000, 5, 5),
 ('B0014', 'Sillet', 'PCS', 16000, 18000, 10, 10),
 ('B0015', 'Papan Tulis(sp)', 'PCS', 30000, 35000, 8, 8),
@@ -202,11 +218,15 @@ CREATE TABLE `d_beli` (
 --
 
 INSERT INTO `d_beli` (`id`, `kd_beli`, `kd_brg`, `jml_beli`) VALUES
-(1, 'KDB0004', 'B0001', 50),
-(2, 'KDB0003', 'B0002', 40),
-(3, 'KDB0003', 'B0003', 30),
-(4, 'KDB0004', 'B0004', 20),
-(5, 'KDB0003', 'B0005', 10);
+(0, 'KDB3', 'B0001', 5),
+(1, 'KDB1', 'B0001', 5),
+(2, 'KDB1', 'B0001', 5),
+(3, 'KDB2', 'B0002', 5),
+(4, 'KDB2', 'B0002', 5),
+(5, 'KDB5', 'B0001', 5),
+(9, 'KDB6', 'B0012', 10),
+(15, 'KDB4', 'B0001', 5),
+(16, 'KDB4', 'B0002', 5);
 
 --
 -- Triggers `d_beli`
@@ -327,11 +347,12 @@ CREATE TABLE `t_beli` (
 --
 
 INSERT INTO `t_beli` (`kd_beli`, `tgl_beli`, `id_user`) VALUES
-('KDB0001', '2022-01-02', 3),
-('KDB0002', '2022-01-03', 2),
-('KDB0003', '2022-02-03', 3),
-('KDB0004', '2022-03-20', 3),
-('KDB0005', '2022-03-22', 3);
+('KDB1', '2022-02-01', 2),
+('KDB2', '2022-02-02', 3),
+('KDB3', '2023-07-14', 2),
+('KDB4', '2022-02-01', 2),
+('KDB5', '2023-07-14', 2),
+('KDB6', '2023-07-14', 2);
 
 --
 -- Triggers `t_beli`
@@ -389,9 +410,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `pswd`, `name`, `level`, `status`) VALUES
-(1, '123', 'HeathCliff', 'administrator', 1),
+(1, '!@#$%', 'HeathCliff', 'administrator', 1),
 (2, 'admin', 'admin', 'administrator', 1),
-(3, '123', 'user', 'user', 1);
+(3, '123', 'user', 'user', 1),
+(4, '123', 'ali', 'user', 1),
+(5, '123', 'udin', 'user', 1),
+(6, 'kimbo', 'Zaenal', 'administrator', 1);
 
 -- --------------------------------------------------------
 
