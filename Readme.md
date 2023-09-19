@@ -3,8 +3,7 @@ IDE   : NetBeans
 
 
 ## Link Demo Program 
-mohon maaf pak telat 😢 .....
-https://youtu.be/KcFp-gxrLXs
+
 
 ## keterangan: 
 - JasperImport hanya bisa dijalankan menggunak java JDK versi 8
